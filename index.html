@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc mừng ngày 20/11</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>💌</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 25%, #ff9a9e 50%, #fecfef 75%, #f8b4d4 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            overflow: hidden;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.5;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 0.2; }
+        }
+
+        .light {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .light-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,200,221,0.4) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            animation: glow 6s ease-in-out infinite;
+            box-shadow: 0 0 100px rgba(255,182,193,0.6);
+        }
+
+        .light-2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(255,218,185,0.4) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            animation: glow 7s ease-in-out infinite reverse;
+            box-shadow: 0 0 100px rgba(255,218,185,0.6);
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .envelope-wrapper {
+            position: relative;
+            width: 500px;
+            height: 340px;
+            perspective: 1200px;
+            cursor: pointer;
+        }
+
+        /* Bìa thư - ngoài */
+        .envelope-outer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #f5e6d3 0%, #ede0ce 100%);
+            border: 3px solid #d4a574;
+            border-radius: 8px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8), 
+                        0 0 0 1px rgba(212, 165, 116, 0.5);
+            z-index: 10;
+            transform-style: preserve-3d;
+            transition: none;
+        }
+
+        .envelope-outer.opened {
+            animation: envelopeSlide 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes envelopeSlide {
+            0% {
+                transform: translateZ(0) rotateY(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateZ(-200px) rotateY(45deg);
+                opacity: 0;
+            }
+        }
+
+        /* Bìa thư dưới */
+        .envelope-bottom {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #f0e3d0 0%, #e8dac5 100%);
+            border: 3px solid #d4a574;
+            border-radius: 8px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8);
+            z-index: 1;
+        }
+
+        /* Flap - cái nắp phía trên */
+        .envelope-flap {
+            position: absolute;
+            width: 100%;
+            height: 0;
+            top: 0;
+            left: 0;
+            border-left: 250px solid transparent;
+            border-right: 250px solid transparent;
+            border-top: 170px solid #e8d4bf;
+            border-bottom: 0;
+            z-index: 20;
+            cursor: pointer;
+            box-shadow: 
+                inset 1px 1px 0 rgba(255,255,255,0.5),
+                inset -1px 1px 0 rgba(255,255,255,0.5),
+                -20px 5px 40px rgba(0,0,0,0.15);
+            transform-style: preserve-3d;
+            transform-origin: top center;
+            transition: transform 2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .envelope-wrapper.opened .envelope-flap {
+            transform: rotateX(140deg);
+        }
+
+        /* Line ở giữa nắp */
+        .envelope-flap::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            top: 170px;
+            left: -250px;
+            background: linear-gradient(90deg, transparent 0%, #c89968 50%, transparent 100%);
+        }
+
+        /* Trang trí cute trên nắp */
+        .envelope-decoration {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 28px;
+            animation: decorBounce 2s ease-in-out infinite;
+            z-index: 17;
+        }
+
+        @keyframes decorBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+            50% { transform: translateX(-50%) translateY(-8px) rotate(5deg); }
+        }
+
+        /* Địa chỉ trên nắp */
+        .envelope-address {
+            position: absolute;
+            top: 75px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 15;
+            pointer-events: none;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .envelope-address-to {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            color: #6b5d52;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .envelope-address-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 24px;
+            color: #8b6f47;
+            font-weight: 700;
+        }
+
+        /* Stamp - tem */
+        .envelope-stamp {
+            position: absolute;
+            width: 70px;
+            height: 80px;
+            top: 20px;
+            right: 25px;
+            background: linear-gradient(135deg, #ffb3d9 0%, #ff8fab 50%, #ff6b9d 100%);
+            border: 3px dashed #ff5582;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 4px 12px rgba(255, 107, 157, 0.3);
+            transform: rotate(-18deg);
+            z-index: 16;
+            animation: stampWiggle 3s ease-in-out infinite;
+        }
+
+        @keyframes stampWiggle {
+            0%, 100% { transform: rotate(-18deg) scale(1); }
+            50% { transform: rotate(-20deg) scale(1.05); }
+        }
+
+        /* Tấm giấy bên trong */
+        .envelope-letter {
+            position: absolute;
+            width: 440px;
+            height: 260px;
+            background: #faf6f1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 1px solid #e8d5c4;
+            padding: 40px 45px;
+            display: flex;
+            flex-direction: column;
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 0.6s ease 1.8s;
+        }
+
+        .envelope-letter.show {
+            opacity: 1;
+        }
+
+        .envelope-letter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 28px,
+                    #f0ebe5 28px,
+                    #f0ebe5 29px
+                );
+            pointer-events: none;
+            opacity: 0.12;
+            border-radius: 4px;
+        }
+
+        .letter-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .letter-greeting {
+            font-family: 'Dancing Script', cursive;
+            color: #8b6f47;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .letter-body {
+            font-family: 'Montserrat', sans-serif;
+            color: #3d3d3d;
+            font-size: 13px;
+            line-height: 1.6;
+            text-align: justify;
+            flex: 1;
+            margin-bottom: 15px;
+        }
+
+        .letter-body p {
+            margin-bottom: 10px;
+        }
+
+        .letter-signature {
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            color: #8b6f47;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        /* Tâm thư modal */
+        .letter-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            background: rgba(0, 0, 0, 0);
+        }
+
+        .letter-wrapper.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .letter-page {
+            width: 90%;
+            max-width: 720px;
+            max-height: 85vh;
+            background: #faf6f1;
+            padding: 65px 60px;
+            border-radius: 6px;
+            box-shadow: 0 60px 120px rgba(0,0,0,0.35), inset 0 1px 2px rgba(255,255,255,0.95);
+            border: 1px solid #e8d5c4;
+            transform: scale(0) rotateZ(25deg);
+            opacity: 0;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .letter-page::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .letter-page::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .letter-page::-webkit-scrollbar-thumb {
+            background: #d4a574;
+            border-radius: 3px;
+        }
+
+        .letter-page.show {
+            animation: letterAppear 2.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes letterAppear {
+            0% { 
+                transform: scale(0) rotateZ(25deg);
+                opacity: 0;
+            }
+            70% {
+                transform: scale(1.08) rotateZ(0deg);
+            }
+            100% { 
+                transform: scale(1) rotateZ(0deg);
+                opacity: 1;
+            }
+        }
+
+        .letter-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 28px,
+                    #f0ebe5 28px,
+                    #f0ebe5 29px
+                );
+            pointer-events: none;
+            opacity: 0.12;
+        }
+
+        .letter-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .letter-content p {
+            font-family: 'Montserrat', sans-serif;
+            color: #3d3d3d;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            text-align: justify;
+            animation: textAppear 0.8s ease-out 0.3s both;
+        }
+
+        .letter-content p:nth-of-type(2) { animation-delay: 0.6s; }
+        .letter-content p:nth-of-type(3) { animation-delay: 0.9s; }
+
+        .letter-content .sig {
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            color: #8b6f47;
+            font-size: 34px;
+            font-weight: 700;
+            margin-top: 35px;
+            animation: textAppear 0.8s ease-out 1.2s both;
+        }
+
+        @keyframes textAppear {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Lời chúc bay */
+        .wishes-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 35;
+        }
+
+        .wish {
+            position: absolute;
+            font-size: 26px;
+            opacity: 0;
+            animation: wishFloat 11s ease-out forwards;
+            text-shadow: 3px 3px 12px rgba(0,0,0,0.4), 0 0 30px rgba(255,182,193,0.8);
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+        }
+
+        @keyframes wishFloat {
+            0% { opacity: 1; transform: translateY(0) translateX(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-850px) translateX(480px) scale(0.01); }
+        }
+
+        .close-btn {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,107,157,0.95);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255,107,157,0.5);
+        }
+
+        .close-btn.show {
+            opacity: 1;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.15);
+            background: rgba(255,107,157,1);
+            box-shadow: 0 8px 30px rgba(255,107,157,0.6);
+        }
+
+        /* Music control */
+        .music-control {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,107,157,0.95);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            font-size: 22px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255,107,157,0.5);
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            background: rgba(255,107,157,1);
+        }
+
+        .music-control.playing {
+            animation: musicPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .envelope-wrapper {
+                width: 420px;
+                height: 285px;
+            }
+
+            .envelope-flap {
+                border-left: 210px solid transparent;
+                border-right: 210px solid transparent;
+                border-top: 142px solid #e8d4bf;
+            }
+
+            .envelope-flap::before {
+                left: -210px;
+            }
+
+            .envelope-decoration {
+                top: 25px;
+                font-size: 24px;
+            }
+
+            .envelope-address {
+                top: 60px;
+            }
+
+            .envelope-address-to {
+                font-size: 11px;
+            }
+
+            .envelope-address-name {
+                font-size: 20px;
+            }
+
+            .envelope-stamp {
+                width: 60px;
+                height: 70px;
+                font-size: 32px;
+                top: 15px;
+                right: 18px;
+            }
+
+            .envelope-letter {
+                width: 380px;
+                height: 220px;
+                padding: 30px 35px;
+            }
+
+            .letter-greeting {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+            .letter-body {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+            .letter-body p {
+                margin-bottom: 8px;
+            }
+
+            .letter-signature {
+                font-size: 22px;
+            }
+
+            .letter-page {
+                padding: 45px 40px;
+                max-height: 75vh;
+            }
+
+            .letter-content p {
+                font-size: 14px;
+            }
+
+            .letter-content .sig {
+                font-size: 30px;
+                margin-top: 25px;
+            }
+
+            .close-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 24px;
+            }
+
+            .music-control {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .envelope-wrapper {
+                width: 340px;
+                height: 230px;
+            }
+
+            .envelope-flap {
+                border-left: 170px solid transparent;
+                border-right: 170px solid transparent;
+                border-top: 115px solid #e8d4bf;
+            }
+
+            .envelope-flap::before {
+                left: -170px;
+            }
+
+            .envelope-decoration {
+                top: 20px;
+                font-size: 20px;
+            }
+
+            .envelope-address {
+                top: 50px;
+            }
+
+            .envelope-address-to {
+                font-size: 10px;
+            }
+
+            .envelope-address-name {
+                font-size: 18px;
+            }
+
+            .envelope-stamp {
+                width: 50px;
+                height: 60px;
+                font-size: 26px;
+                top: 12px;
+                right: 13px;
+            }
+
+            .envelope-letter {
+                width: 310px;
+                height: 185px;
+                padding: 25px 28px;
+            }
+
+            .letter-greeting {
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+
+            .letter-body {
+                font-size: 11px;
+                line-height: 1.5;
+            }
+
+            .letter-body p {
+                margin-bottom: 7px;
+            }
+
+            .letter-signature {
+                font-size: 20px;
+            }
+
+            .letter-page {
+                width: 92%;
+                padding: 35px 28px;
+                max-height: 70vh;
+            }
+
+            .letter-content p {
+                font-size: 13px;
+                line-height: 1.7;
+            }
+
+            .letter-content .sig {
+                font-size: 26px;
+                margin-top: 20px;
+            }
+
+            .close-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 22px;
+                top: 20px;
+                right: 20px;
+            }
+
+            .music-control {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- removed the <audio> element and replaced with a hidden YouTube player container -->
+    <div id="ytPlayer" style="width:0;height:0;overflow:hidden;position:absolute;left:-9999px;"></div>
+    
+    <div class="light light-1"></div>
+    <div class="light light-2"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <!-- Bìa thư dưới -->
+            <div class="envelope-bottom"></div>
+
+            <!-- Bìa thư ngoài -->
+            <div class="envelope-outer"></div>
+
+            <!-- Nắp thư -->
+            <div class="envelope-flap"></div>
+
+            <!-- Trang trí cute -->
+            <div class="envelope-decoration">✨</div>
+
+            <!-- Địa chỉ và tem -->
+            <div class="envelope-address">
+                <div class="envelope-address-to">Gửi đến</div>
+                <div class="envelope-address-name">Cô Giáo Yêu Quý</div>
+            </div>
+
+            <div class="envelope-stamp">💝</div>
+
+            <!-- Tấm giấy bên trong -->
+            <div class="envelope-letter" id="envelopeLetter">
+                <div class="letter-content">
+                    <div class="letter-greeting">Kính gửi cô</div>
+                    <div class="letter-body">
+                        <p>Hôm nay là ngày đặc biệt để em bày tỏ lòng cảm ơn sâu sắc đến cô.</p>
+                        <p>Cô không chỉ dạy kiến thức mà còn dạy em cách sống, yêu thương và vượt qua khó khăn.</p>
+                        <p>Mỗi lời động viên từ cô đã giúp em tìm thấy sức mạnh để tiếp tục. Xin chúc cô một ngày 20/11 thật ý nghĩa!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tâm thư modal -->
+    <div class="letter-wrapper" id="letterWrapper">
+        <div class="letter-page" id="letterPage">
+            <div class="letter-content">
+                <p>Kính gửi cô giáo yêu quý,</p>
+                <p>Hôm nay là ngày đặc biệt để em bày tỏ lòng cảm ơn sâu sắc đến cô. Cô không chỉ dạy em kiến thức mà còn dạy em cách sống, cách yêu thương và vượt qua những khó khăn trong cuộc sống.</p>
+                <p>Mỗi lời nhắn nhở, mỗi bài giảng từ cô đều để lại dấu ấn sâu sắc. Khi em buồn chán hay thiếu tự tin, một lời động viên từ cô đã giúp em tìm thấy niềm vui và sức mạnh để tiếp tục. Tình yêu thương, sự kiên nhẫn và hy sinh của cô là những bài học vô cùng quý giá. Xin chúc cô một ngày 20/11 thật ý nghĩa, tràn đầy hạnh phúc và sức khỏe!</p>
+                <p class="sig">Khánh Linh</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="close-btn" id="closeBtn">✕</div>
+    <div class="music-control" id="musicControl">🎵</div>
+    <div class="wishes-container" id="wishesContainer"></div>
+    
+    <script>
+        // YouTube player will be used instead of HTMLAudioElement
+        let player;
+        let isPlaying = false;
+        let hasSeeked = false; // ensure we only seek to 3s once at start
+        const musicControl = document.getElementById('musicControl');
+
+        // Load the IFrame Player API code asynchronously.
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(tag);
+
+        // This function gets called by the YouTube API once it's ready.
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytPlayer', {
+                height: '0',
+                width: '0',
+                videoId: 'O4JlEf1p1MU',
+                playerVars: {
+                    autoplay: 0,
+                    controls: 0,
+                    rel: 0,
+                    modestbranding: 1,
+                    playsinline: 1
+                },
+                events: {
+                    onReady: onPlayerReady,
+                    onStateChange: onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            try {
+                player.setVolume(30); // volume 0-100
+            } catch (e) { console.log(e); }
+
+            // Try to autoplay and seek to 3s
+            try {
+                if (!hasSeeked) {
+                    player.seekTo(3, true);
+                    hasSeeked = true;
+                }
+                player.playVideo();
+                isPlaying = true;
+                musicControl.classList.add('playing');
+                musicControl.textContent = '🎵';
+            } catch (err) {
+                console.log('Autoplay blocked or not ready:', err);
+            }
+        }
+
+        function onPlayerStateChange(e) {
+            // update isPlaying based on YT states
+            const state = e.data;
+            // YT.PlayerState.PLAYING === 1, PAUSED === 2, ENDED === 0
+            if (state === YT.PlayerState.PLAYING) {
+                isPlaying = true;
+                musicControl.classList.add('playing');
+                musicControl.textContent = '🎵';
+            } else if (state === YT.PlayerState.PAUSED || state === YT.PlayerState.ENDED) {
+                isPlaying = false;
+                musicControl.classList.remove('playing');
+                musicControl.textContent = '🔇';
+            }
+        }
+
+        // Music control click toggles YT player
+        musicControl.addEventListener('click', () => {
+            if (!player) return;
+            if (isPlaying) {
+                player.pauseVideo();
+                // onStateChange will update UI
+            } else {
+                // On manual play, ensure we seek to 3s once at the beginning
+                try {
+                    if (!hasSeeked) {
+                        player.seekTo(3, true);
+                        hasSeeked = true;
+                    }
+                    player.playVideo();
+                } catch (e) {
+                    console.log('Play attempt failed:', e);
+                }
+            }
+        });
+
+        // --- Remaining original functionality preserved (particles, wishes, envelope UI) ---
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const flowers = ['🌹', '🌸', '🌺', '🌻', '🌷', '💐'];
+            
+            for (let i = 0; i < 25; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particle.style.fontSize = (Math.random() * 20 + 30) + 'px';
+                container.appendChild(particle);
+            }
+        }
+
+        function createWish() {
+            const wishes = [
+                '🎓 Chúc mừng 20/11', '❤️ Cảm ơn cô', '✨ Hạnh phúc', '🌟 Thành công',
+                '💪 Sức khỏe', '🌹 Yêu thương', '👏 Tôn vinh', '📚 Tri thức',
+                '💡 Cảm hứng', '🎉 Ngày lễ', '💝 Tấm lòng', '🌈 Hy vọng',
+                '🌺 May mắn', '💐 Tươi sáng', '✍️ Lời chúc', '🎁 Tặng yêu'
+            ];
+            
+            const container = document.getElementById('wishesContainer');
+            const wish = document.createElement('div');
+            wish.className = 'wish';
+            wish.textContent = wishes[Math.floor(Math.random() * wishes.length)];
+            wish.style.left = Math.random() * 100 + '%';
+            wish.style.top = Math.random() * 100 + '%';
+            wish.style.color = ['#ff6b9d', '#ff8fab', '#ffb3c6', '#ffc0d9', '#ff5582'][Math.floor(Math.random() * 5)];
+            
+            container.appendChild(wish);
+            setTimeout(() => wish.remove(), 11000);
+        }
+
+        const envelopeWrapper = document.getElementById('envelopeWrapper');
+        const envelopeLetter = document.getElementById('envelopeLetter');
+        const letterWrapper = document.getElementById('letterWrapper');
+        const letterPage = document.getElementById('letterPage');
+        const closeBtn = document.getElementById('closeBtn');
+
+        let isOpening = false;
+        let wishInterval;
+
+        // Tự động mở thư sau 2.5 giây
+        setTimeout(() => {
+            if (!isOpening) {
+                autoOpenEnvelope();
+            }
+        }, 2500);
+
+        function autoOpenEnvelope() {
+            isOpening = true;
+            envelopeWrapper.classList.add('opened');
+            envelopeLetter.classList.add('show');
+            
+            setTimeout(() => {
+                letterWrapper.classList.add('show');
+                letterPage.classList.add('show');
+                closeBtn.classList.add('show');
+                createWish();
+                wishInterval = setInterval(() => createWish(), 700);
+            }, 2000);
+        }
+
+        // Click để mở thư
+        envelopeWrapper.addEventListener('click', () => {
+            if (!isOpening) {
+                autoOpenEnvelope();
+            }
+        });
+
+        closeBtn.addEventListener('click', () => {
+            letterWrapper.classList.remove('show');
+            letterPage.classList.remove('show');
+            closeBtn.classList.remove('show');
+            envelopeWrapper.classList.remove('opened');
+            envelopeLetter.classList.remove('show');
+            isOpening = false;
+            if (wishInterval) clearInterval(wishInterval);
+        });
+
+        createParticles();
+    </script>
+</body>
+</html>
